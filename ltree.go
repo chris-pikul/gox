@@ -18,6 +18,14 @@ func (t LTree) Segments() []string {
 	return SplitStringByRune(string(t), '.')
 }
 
+func (t LTree) Prefix(segments ...string) LTree {
+	return NewLTree(JoinSlices(segments, t.Segments())...)
+}
+
+func (t LTree) Postfix(segments ...string) LTree {
+	return NewLTree(JoinSlices(t.Segments(), segments)...)
+}
+
 // Match checks if the given query string matches against this L-Tree. This is
 // a very basic implementation and allows only for the '*' operator to use as
 // a wildcard for a whole segment. Otherwise, each part is matched in order.

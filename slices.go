@@ -20,6 +20,15 @@ func SliceContains[Type any](slice []Type, matcher func(v Type) bool) bool {
 	return false
 }
 
+func SliceFindIndex[Type any](slice []Type, matcher func(v Type) bool) int {
+	for i, v := range slice {
+		if matcher(v) {
+			return i
+		}
+	}
+	return -1
+}
+
 // SliceFindFirst runs a matcher on all values of a slice and returns the value
 // that responds with true.
 func SliceFindFirst[Type any](slice []Type, matcher func(v Type) bool) (*Type, bool) {
